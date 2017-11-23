@@ -330,8 +330,8 @@ class RandomResizedCrop(object):
 
     Args:
         size: expected output size of each edge
-        scale: range of size of the origin size cropped
-        ratio: range of aspect ratio of the origin aspect ratio cropped
+        scale: range of size of the origin size cropped. Default: (0.08, 1.0)
+        ratio: range of aspect ratio of the origin aspect ratio cropped. Default: (3/4, 4/3)
         interpolation: Default: PIL.Image.BILINEAR
     """
 
