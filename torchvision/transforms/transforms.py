@@ -94,7 +94,7 @@ class ToPILImage(object):
 
 class Normalize(object):
     """Normalize an tensor image with mean and standard deviation.
-    Given mean: ``(M1,...,Mn)`` and std: ``(M1,..,Mn)`` for ``n`` channels, this transform
+    Given mean: ``(M1,...,Mn)`` and std: ``(S1,..,Sn)`` for ``n`` channels, this transform
     will normalize each channel of the input ``torch.*Tensor`` i.e.
     ``input[channel] = (input[channel] - mean[channel]) / std[channel]``
 
@@ -330,8 +330,8 @@ class RandomResizedCrop(object):
 
     Args:
         size: expected output size of each edge
-        scale: range of size of the origin size cropped. Default: (0.08, 1.0)
-        ratio: range of aspect ratio of the origin aspect ratio cropped. Default: (3/4, 4/3)
+        scale: range of size of the origin size cropped
+        ratio: range of aspect ratio of the origin aspect ratio cropped
         interpolation: Default: PIL.Image.BILINEAR
     """
 
@@ -347,6 +347,8 @@ class RandomResizedCrop(object):
 
         Args:
             img (PIL Image): Image to be cropped.
+            scale (tuple): range of size of the origin size cropped
+            ratio (tuple): range of aspect ratio of the origin aspect ratio cropped
 
         Returns:
             tuple: params (i, j, h, w) to be passed to ``crop`` for a random
