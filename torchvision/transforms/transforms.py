@@ -342,7 +342,7 @@ class RandomResizedCrop(object):
         self.ratio = ratio
 
     @staticmethod
-    def get_params(img):
+    def get_params(img, scale, ratio):
         """Get parameters for ``crop`` for a random sized crop.
 
         Args:
@@ -354,8 +354,8 @@ class RandomResizedCrop(object):
         """
         for attempt in range(10):
             area = img.size[0] * img.size[1]
-            target_area = random.uniform(*self.scale) * area
-            aspect_ratio = random.uniform(*self.ratio)
+            target_area = random.uniform(*scale) * area
+            aspect_ratio = random.uniform(*ratio)
 
             w = int(round(math.sqrt(target_area * aspect_ratio)))
             h = int(round(math.sqrt(target_area / aspect_ratio)))
@@ -382,7 +382,7 @@ class RandomResizedCrop(object):
         Returns:
             PIL Image: Randomly cropped and resize image.
         """
-        i, j, h, w = self.get_params(img)
+        i, j, h, w = self.get_params(img, self.scale, self.ratio)
         return F.resized_crop(img, i, j, h, w, self.size, self.interpolation)
 
 
